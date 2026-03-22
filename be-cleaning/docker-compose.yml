@@ -1,0 +1,9 @@
+version: "3.8"
+
+services:
+  backend:
+    image: siny2000/be-clever-clean:latest
+    container_name: be-clever-clean
+    ports:
+      - "8080:8080"
+    restart: always
