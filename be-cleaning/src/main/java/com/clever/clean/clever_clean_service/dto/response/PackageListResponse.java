@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class PackageListResponse {
 
-    private String id;
+    private Long id;
     private String name;
 
     private int price;
@@ -19,5 +19,5 @@ public class PackageListResponse {
 
     private float rating;
 
-    private String imageUrl;
+    private String coverImageUrl;
 }

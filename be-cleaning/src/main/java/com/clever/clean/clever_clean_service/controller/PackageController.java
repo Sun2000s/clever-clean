@@ -1,6 +1,7 @@
 package com.clever.clean.clever_clean_service.controller;
 
 import com.clever.clean.clever_clean_service.dto.ApiResponse;
+import com.clever.clean.clever_clean_service.dto.request.NewPackageRequest;
 import com.clever.clean.clever_clean_service.dto.response.PackageListResponse;
 import com.clever.clean.clever_clean_service.entity.PackageEntity;
 import com.clever.clean.clever_clean_service.repository.PackageRepository;
@@ -26,15 +27,12 @@ public class PackageController {
 //        return packageRepository.findAll();
 //    }
 //
-////    @PostMapping
-//    public PackageEntity createPackage(@RequestBody CleaningPackage request) {
-//
-//        // optional: set ค่า default
-//        request.setCreatedBy("admin");
-//        request.setUpdatedBy("admin");
-//
-//        return packageRepository.save(request);
-//    }
+    @PostMapping("/create")
+    public ApiResponse<?> createPackage(@RequestBody NewPackageRequest request) {
+
+        return new ApiResponse<>("SC001", "Success", packageService.createPackage(request));
+
+    }
 
     @GetMapping()
     public ApiResponse<List<PackageListResponse>> getPackages() {

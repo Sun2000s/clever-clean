@@ -1,0 +1,16 @@
+# ใช้ maven image สำหรับ dev
+FROM maven:3.9.6-eclipse-temurin-21
+
+WORKDIR /app
+
+# copy pom เพื่อ cache dependency
+COPY pom.xml .
+RUN mvn dependency:go-offline
+
+# copy source
+COPY src ./src
+
+EXPOSE 8080
+
+# run แบบ dev (สำคัญมาก)
+CMD ["mvn", "spring-boot:run"]
