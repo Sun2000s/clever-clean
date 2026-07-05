@@ -34,6 +34,13 @@ public class PackageController {
 
     }
 
+    @PostMapping("/update")
+    public ApiResponse<?> updatePackage(@RequestBody NewPackageRequest request) {
+
+        return new ApiResponse<>("SC001", "Success", packageService.updatePackage(request));
+
+    }
+
     @GetMapping()
     public ApiResponse<List<PackageListResponse>> getPackages() {
         return new ApiResponse<>("SC001", "Success", packageService.getPackageList());

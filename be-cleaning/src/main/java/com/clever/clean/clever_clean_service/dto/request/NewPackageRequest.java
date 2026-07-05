@@ -7,6 +7,7 @@ import java.util.List;
 @Data
 public class NewPackageRequest {
 
+    private long id;
     private String name;
 
     private int minDurationHours;

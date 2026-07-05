@@ -8,9 +8,11 @@ import com.clever.clean.clever_clean_service.entity.PackageEntity;
 import com.clever.clean.clever_clean_service.repository.ImageRepository;
 import com.clever.clean.clever_clean_service.repository.PackageRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import tools.jackson.databind.ObjectMapper;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PackageService {
@@ -40,9 +42,7 @@ public class PackageService {
             pkg.setMinStaff(p.getTeamSizeMin());
             pkg.setMaxStaff(p.getTeamSizeMax());
 
-            pkg.setRating(p.getRating());
-
-
+            pkg.setRating(p.getRating() != null ? p.getRating() : 0f);
 
             ImagesEntity img = imageRepository.findByPackageIdAndType(pkg.getId(), "COVER");
 
@@ -87,6 +87,63 @@ public class PackageService {
         }
 
         if(!request.getGalleryImages().isEmpty()){
+            for(Image image: request.getGalleryImages()){
+
+                ImagesEntity newImage = new ImagesEntity();
+                newImage.setPackageId(pkgId);
+                newImage.setUrl(image.getUrl());
+                newImage.setType("GALLERY");
+                newImage.setPublicId(image.getPublicId());
+
+                imageRepository.save(newImage);
+            }
+        }
+
+        return true;
+    }
+
+    @Transactional
+    public boolean updatePackage(NewPackageRequest request){
+
+        Optional<PackageEntity> packageEntity = packageRepository.findById(request.getId());
+
+        if(packageEntity.isEmpty()){
+            return false;
+        }
+
+        PackageEntity pkg = packageEntity.get();
+        ObjectMapper mapper = new ObjectMapper();
+
+        pkg.setName(request.getName());
+        pkg.setDurationMinHours(request.getMinDurationHours());
+        pkg.setDurationMaxHours(request.getMaxDurationHours());
+        pkg.setTeamSizeMin(request.getMinStaff());
+        pkg.setTeamSizeMax(request.getMaxStaff());
+        pkg.setPrice(request.getPrice());
+        pkg.setDescription(request.getDescription());
+
+        pkg.setHighlight(request.getHighlights());
+        pkg.setBenefit(request.getBenefits());
+
+
+        Long pkgId = packageRepository.save(pkg).getId();
+
+        if (request.getCoverImage() != null){
+
+            imageRepository.deleteByPackageIdAndType(pkgId,"COVER");
+
+            ImagesEntity image = new ImagesEntity();
+            image.setPackageId(pkgId);
+            image.setUrl(request.getCoverImage().getUrl());
+            image.setType("COVER");
+            image.setPublicId(request.getCoverImage().getPublicId());
+
+            imageRepository.save(image);
+        }
+
+        if(!request.getGalleryImages().isEmpty()){
+
+            imageRepository.deleteByPackageIdAndType(pkgId,"GALLERY");
             for(Image image: request.getGalleryImages()){
 
                 ImagesEntity newImage = new ImagesEntity();
