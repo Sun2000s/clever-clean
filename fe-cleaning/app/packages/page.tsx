@@ -20,7 +20,7 @@ const mapped: PackageType[] = packages.map((item: PackageApi) => ({
   duration: `${item.minDurationHours}-${item.maxDurationHours} ชั่วโมง`,
   staff: `${item.minStaff}-${item.maxStaff} คน`,
   rating: item.rating,
-  image: item.imageUrl,
+  image: item.coverImage,
 }));
 
   return <PackageList packages={mapped} />;
