@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { PackageType } from "@/types/package";
 
 interface Props {
@@ -16,31 +17,23 @@ export default function PackageCard({
   onDelete,
 }: Props) {
   return (
-    <div className="bg-white border border-gray-100 rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition duration-300">
-
-      {/* IMAGE */}
-      <div className="w-full h-48 bg-gray-200">
-        <img
-          src={
-            data.coverImageUrl ||
-            "https://via.placeholder.com/500x300"
-          }
+    <div className="group overflow-hidden rounded-2xl border border-gray-200 bg-white/80 backdrop-blur-sm shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl">
+      <div className="relative h-56 w-full bg-gray-100">
+        <Image
+          src={data.coverImage?.url || "/placeholder.png"}
           alt={data.name}
-          className="w-full h-full object-cover"
+          fill
+          className="object-cover transition duration-500 group-hover:scale-105"
+          unoptimized
         />
       </div>
 
-      {/* CONTENT */}
       <div className="p-5">
-
-        {/* TITLE */}
-        <h2 className="text-xl font-bold text-orange-500">
+        <h2 className="text-xl font-semibold text-[#183153]">
           {data.name}
         </h2>
 
-        {/* INFO */}
         <div className="mt-3 space-y-2 text-sm text-gray-600">
-
           <div>
             ⏱ {data.minDurationHours} - {data.maxDurationHours} ชั่วโมง
           </div>
@@ -52,42 +45,32 @@ export default function PackageCard({
           <div>
             💰 {data.price.toLocaleString()} บาท
           </div>
-
         </div>
 
-        {/* FOOTER */}
-        <div className="flex items-center justify-between mt-6">
-
-          {/* RATING */}
-          <div className="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-medium">
+        <div className="mt-6 flex items-center justify-between">
+          <div className="rounded-full bg-green-100 px-3 py-1 text-sm font-medium text-green-700">
             ⭐ {data.rating ?? 5.0}
           </div>
 
-          {/* USER MODE */}
-          {!isAdmin && (
-            <button className="bg-teal-400 hover:bg-teal-500 text-white px-4 py-2 rounded-full text-sm font-medium transition">
+          {!isAdmin ? (
+            <button className="rounded-full bg-[#183153] px-4 py-2 text-sm font-medium text-white transition hover:opacity-90">
               รายละเอียดเพิ่มเติม
             </button>
-          )}
-
-          {/* ADMIN MODE */}
-          {isAdmin && (
+          ) : (
             <div className="flex gap-2">
-
               <button
-                onClick={() => onEdit?.(String(data.id))}
-                className="bg-blue-500 text-white px-4 py-2 rounded-xl text-sm hover:opacity-80 transition"
+                onClick={() => onEdit?.(data.id)}
+                className="rounded-xl bg-blue-500 px-4 py-2 text-sm text-white transition hover:opacity-80"
               >
                 Edit
               </button>
 
               <button
-                onClick={() => onDelete?.(String(data.id))}
-                className="bg-red-500 text-white px-4 py-2 rounded-xl text-sm hover:opacity-80 transition"
+                onClick={() => onDelete?.(data.id)}
+                className="rounded-xl bg-red-500 px-4 py-2 text-sm text-white transition hover:opacity-80"
               >
                 Delete
               </button>
-
             </div>
           )}
         </div>

@@ -25,3 +25,4 @@ const mapped: PackageType[] = packages.map((item: PackageApi) => ({
 
   return <PackageList packages={mapped} />;
 }
+

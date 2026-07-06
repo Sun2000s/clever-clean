@@ -1,5 +1,31 @@
 @import "tailwindcss";
 
+@theme {
+
+  /* Brand Colors */
+
+  --color-primary: #183153;
+
+  --color-secondary: #F9F9F7;
+
+  --color-accent: #D9B06D;
+
+  --color-success: #5BB974;
+
+  --color-text: #222222;
+
+  --color-surface: #FFFFFF;
+
+    /* Fonts */
+
+  --font-body: var(--font-inter);
+
+  --font-thai: var(--font-prompt);
+
+  --font-heading: var(--font-heading);
+
+}
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
