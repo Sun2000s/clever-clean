@@ -39,8 +39,6 @@ export default function RootLayout({
           ${prompt.variable}
           ${playfair.variable}
           antialiased
-          bg-secondary
-          text-text
         `}
       >
         <Navbar />
