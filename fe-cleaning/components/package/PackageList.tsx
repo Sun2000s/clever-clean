@@ -4,8 +4,8 @@ import PackageCard from "./PackageCard";
 interface Props {
   packages: PackageType[];
   isAdmin?: boolean;
-  onEdit?: (id: string) => void;
-  onDelete?: (id: string) => void;
+  onEdit?: (id: number) => void;
+  onDelete?: (id: number) => void;
 }
 
 export default function PackageList({
@@ -15,11 +15,15 @@ export default function PackageList({
   onDelete,
 }: Props) {
   if (!packages || packages.length === 0) {
-    return <div className="text-center text-gray-500">ไม่มีแพ็กเกจ</div>;
+    return (
+      <div className="py-20 text-center">
+        <p className="text-lg text-gray-500">ไม่มีแพ็กเกจ</p>
+      </div>
+    );
   }
 
   return (
-    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
       {packages.map((item) => (
         <PackageCard
           key={item.id}

@@ -1,9 +1,29 @@
-export default function ResidentialPage() {
+import { outdoorMaintenanceService } from "@/data/services/outdoorMaintenance";
+
+import ServiceHero from "@/components/services/ServiceHero";
+import ServiceIntro from "@/components/services/ServiceIntro";
+import ServiceIncluded from "@/components/services/ServiceIncluded";
+import WhyChooseService from "@/components/services/WhyChooseService";
+import ServiceProcess from "@/components/services/ServiceProcess";
+import ServiceFAQ from "@/components/services/ServiceFAQ";
+import ServiceCTA from "@/components/services/ServiceCTA";
+
+export default function OutdoorMaintenancePage() {
   return (
-    <main className="py-32">
-      <h1 className="text-center font-heading text-6xl text-primary">
-        Outdoor Maintenance
-      </h1>
-    </main>
+    <>
+      <ServiceHero {...outdoorMaintenanceService.hero} />
+
+      <ServiceIntro {...outdoorMaintenanceService.intro} />
+
+      <ServiceIncluded {...outdoorMaintenanceService.included} />
+
+      <WhyChooseService {...outdoorMaintenanceService.whyChoose} />
+
+      <ServiceProcess {...outdoorMaintenanceService.process} />
+
+      <ServiceFAQ {...outdoorMaintenanceService.faq} />
+
+      <ServiceCTA {...outdoorMaintenanceService.cta} />
+    </>
   );
 }

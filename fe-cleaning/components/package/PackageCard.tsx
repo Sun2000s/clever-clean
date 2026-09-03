@@ -1,13 +1,14 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { PackageType } from "@/types/package";
 
 interface Props {
   data: PackageType;
   isAdmin?: boolean;
-  onEdit?: (id: string) => void;
-  onDelete?: (id: string) => void;
+  onEdit?: (id: number) => void;
+  onDelete?: (id: number) => void;
 }
 
 export default function PackageCard({
@@ -16,9 +17,10 @@ export default function PackageCard({
   onEdit,
   onDelete,
 }: Props) {
+
   return (
-    <div className="group overflow-hidden rounded-2xl border border-gray-200 bg-white/80 backdrop-blur-sm shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl">
-      <div className="relative h-56 w-full bg-gray-100">
+    <div className="group overflow-hidden rounded-3xl border border-gray-100 bg-white shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
+      <div className="relative h-64 w-full overflow-hidden bg-gray-100">
         <Image
           src={data.coverImage?.url || "/placeholder.png"}
           alt={data.name}
@@ -26,54 +28,97 @@ export default function PackageCard({
           className="object-cover transition duration-500 group-hover:scale-105"
           unoptimized
         />
+
+        <div className="absolute right-4 top-4 rounded-full bg-white/95 px-3 py-1.5 text-sm font-medium text-gray-700 shadow-md">
+          ⭐ {data.rating ?? 5.0}
+        </div>
       </div>
 
-      <div className="p-5">
-        <h2 className="text-xl font-semibold text-[#183153]">
+      <div className="p-7">
+        <h2 className="font-heading text-2xl text-primary">
           {data.name}
         </h2>
 
-        <div className="mt-3 space-y-2 text-sm text-gray-600">
-          <div>
-            ⏱ {data.minDurationHours} - {data.maxDurationHours} ชั่วโมง
-          </div>
+        <p className="mt-3 line-clamp-2 leading-7 text-gray-600">
+          {data.description}
+        </p>
 
-          <div>
-            👥 {data.minStaff} - {data.maxStaff} คน
-          </div>
+        <div className="mt-5">
+          <span className="text-sm text-gray-500">
+            Starting from
+          </span>
 
-          <div>
-            💰 {data.price.toLocaleString()} บาท
+          <div className="mt-1 flex items-baseline gap-1">
+            <span className="text-3xl font-bold text-primary">
+              ฿{data.price.toLocaleString()}
+            </span>
+
+            <span className="text-sm text-gray-500">
+              / package
+            </span>
           </div>
         </div>
 
-        <div className="mt-6 flex items-center justify-between">
-          <div className="rounded-full bg-green-100 px-3 py-1 text-sm font-medium text-green-700">
-            ⭐ {data.rating ?? 5.0}
-          </div>
+        <div className="mt-6 space-y-3 border-y border-gray-100 py-5">
+          <div className="flex items-center gap-3">
+            <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary/10 text-primary">
+              ⏱
+            </span>
 
-          {!isAdmin ? (
-            <button className="rounded-full bg-[#183153] px-4 py-2 text-sm font-medium text-white transition hover:opacity-90">
-              รายละเอียดเพิ่มเติม
-            </button>
-          ) : (
-            <div className="flex gap-2">
-              <button
-                onClick={() => onEdit?.(data.id)}
-                className="rounded-xl bg-blue-500 px-4 py-2 text-sm text-white transition hover:opacity-80"
-              >
-                Edit
-              </button>
+            <div>
+              <p className="text-xs text-gray-400">
+                Duration
+              </p>
 
-              <button
-                onClick={() => onDelete?.(data.id)}
-                className="rounded-xl bg-red-500 px-4 py-2 text-sm text-white transition hover:opacity-80"
-              >
-                Delete
-              </button>
+              <p className="font-medium text-gray-700">
+                {data.minDurationHours} - {data.maxDurationHours} ชั่วโมง
+              </p>
             </div>
-          )}
+          </div>
+
+          <div className="flex items-center gap-3">
+            <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary/10 text-primary">
+              👥
+            </span>
+
+            <div>
+              <p className="text-xs text-gray-400">
+                Cleaning Staff
+              </p>
+
+              <p className="font-medium text-gray-700">
+                {data.minStaff} - {data.maxStaff} คน
+              </p>
+            </div>
+          </div>
         </div>
+
+        {!isAdmin ? (
+          <Link
+            href={`/packages/${data.id}`}
+            className="mt-6 flex w-full items-center justify-center rounded-full bg-primary px-6 py-3.5 font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-primary/90 hover:shadow-lg"
+          >
+            รายละเอียดเพิ่มเติม
+          </Link>
+        ) : (
+          <div className="mt-6 flex gap-3">
+            <button
+              type="button"
+              onClick={() => onEdit?.(data.id)}
+              className="flex-1 rounded-xl bg-blue-500 px-4 py-3 text-sm font-medium text-white transition hover:bg-blue-600"
+            >
+              Edit
+            </button>
+
+            <button
+              type="button"
+              onClick={() => onDelete?.(data.id)}
+              className="flex-1 rounded-xl bg-red-500 px-4 py-3 text-sm font-medium text-white transition hover:bg-red-600"
+            >
+              Delete
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );
