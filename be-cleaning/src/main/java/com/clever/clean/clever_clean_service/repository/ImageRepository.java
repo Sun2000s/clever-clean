@@ -12,6 +12,10 @@ public interface ImageRepository extends JpaRepository<ImagesEntity, Long> {
 
     ImagesEntity findByPackageIdAndType(Long pkgId, String type);
 
+    List<ImagesEntity> findByPackageId(Long packageId);
+
     void deleteByPackageIdAndType(Long packageId, String type);
+
+    void deleteByPackageId(Long packageId);
 
 }

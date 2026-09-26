@@ -2,6 +2,7 @@ package com.clever.clean.clever_clean_service.controller;
 
 import com.clever.clean.clever_clean_service.dto.ApiResponse;
 import com.clever.clean.clever_clean_service.dto.request.NewPackageRequest;
+import com.clever.clean.clever_clean_service.dto.response.PackageDetailResponse;
 import com.clever.clean.clever_clean_service.dto.response.PackageListResponse;
 import com.clever.clean.clever_clean_service.entity.PackageEntity;
 import com.clever.clean.clever_clean_service.repository.PackageRepository;
@@ -44,5 +45,15 @@ public class PackageController {
     @GetMapping()
     public ApiResponse<List<PackageListResponse>> getPackages() {
         return new ApiResponse<>("SC001", "Success", packageService.getPackageList());
+    }
+
+    @GetMapping("/{id}")
+    public ApiResponse<PackageDetailResponse> getPackageDetail(@PathVariable("id") Long id) {
+        return new ApiResponse<>("SC001", "Success", packageService.getPackageDetail(id));
+    }
+
+    @DeleteMapping("/{id}")
+    public ApiResponse<?> deletePackage(@PathVariable("id") Long id) {
+        return new ApiResponse<>("SC001", "Success", packageService.deletePackage(id));
     }
 }

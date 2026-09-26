@@ -2,15 +2,19 @@ package com.clever.clean.clever_clean_service.service;
 
 import com.clever.clean.clever_clean_service.dto.request.Image;
 import com.clever.clean.clever_clean_service.dto.request.NewPackageRequest;
+import com.clever.clean.clever_clean_service.dto.response.PackageDetailResponse;
 import com.clever.clean.clever_clean_service.dto.response.PackageListResponse;
 import com.clever.clean.clever_clean_service.entity.ImagesEntity;
 import com.clever.clean.clever_clean_service.entity.PackageEntity;
 import com.clever.clean.clever_clean_service.repository.ImageRepository;
 import com.clever.clean.clever_clean_service.repository.PackageRepository;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.server.ResponseStatusException;
 import tools.jackson.databind.ObjectMapper;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -156,6 +160,55 @@ public class PackageService {
             }
         }
 
+        return true;
+    }
+
+    @Transactional(readOnly = true)
+    public PackageDetailResponse getPackageDetail(Long id) {
+        PackageEntity p = packageRepository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Package not found"));
+
+        List<ImagesEntity> images = imageRepository.findByPackageId(id);
+
+        Image coverImage = null;
+        List<Image> galleryImages = new ArrayList<>();
+
+        for (ImagesEntity img : images) {
+            Image imageDto = new Image();
+            imageDto.setUrl(img.getUrl());
+            imageDto.setPublicId(img.getPublicId());
+            if ("COVER".equalsIgnoreCase(img.getType())) {
+                coverImage = imageDto;
+            } else if ("GALLERY".equalsIgnoreCase(img.getType())) {
+                galleryImages.add(imageDto);
+            }
+        }
+
+        PackageDetailResponse resp = new PackageDetailResponse();
+        resp.setId(p.getId());
+        resp.setName(p.getName());
+        resp.setPrice(p.getPrice() != null ? p.getPrice() : 0);
+        resp.setMinDurationHours(p.getDurationMinHours() != null ? p.getDurationMinHours() : 0);
+        resp.setMaxDurationHours(p.getDurationMaxHours() != null ? p.getDurationMaxHours() : 0);
+        resp.setMinStaff(p.getTeamSizeMin() != null ? p.getTeamSizeMin() : 0);
+        resp.setMaxStaff(p.getTeamSizeMax() != null ? p.getTeamSizeMax() : 0);
+        resp.setRating(p.getRating() != null ? p.getRating() : 0f);
+        resp.setDescription(p.getDescription());
+        resp.setCoverImage(coverImage);
+        resp.setGalleryImages(galleryImages);
+        resp.setHighlights(p.getHighlight());
+        resp.setBenefits(p.getBenefit());
+
+        return resp;
+    }
+
+    @Transactional
+    public boolean deletePackage(Long id) {
+        PackageEntity p = packageRepository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Package not found"));
+
+        imageRepository.deleteByPackageId(id);
+        packageRepository.delete(p);
         return true;
     }
 
