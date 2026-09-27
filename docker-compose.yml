@@ -20,7 +20,7 @@ services:
 
   backend:
     build:
-      context: ./be-clean
+      context: ./be-cleaning
       dockerfile: Dockerfile
     container_name: clever-clean-backend
     restart: unless-stopped
@@ -40,7 +40,7 @@ services:
 
   frontend:
     build:
-      context: ./fe-clean
+      context: ./fe-cleaning
       dockerfile: Dockerfile
     container_name: clever-clean-frontend
     restart: unless-stopped
