@@ -33,11 +33,11 @@ export default function AdminPackagesPage() {
     fetchPackages();
   }, []);
 
-  const handleEdit = (id: string) => {
+  const handleEdit = (id: number) => {
     router.push(`/admin/packages/${id}`);
   };
 
-  const handleDelete = async (id: string) => {
+  const handleDelete = async (id: number) => {
     if (!confirm("Delete this package?")) return;
 
     try {
