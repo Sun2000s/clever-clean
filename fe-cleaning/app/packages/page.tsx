@@ -2,7 +2,13 @@ import PackageList from "@/components/package/PackageList";
 import { PackageApi, PackageType } from "@/types/package";
 
 async function getPackages(): Promise<PackageApi[]> {
-  const res = await fetch("http://localhost:8080/packages", {
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+
+  if (!apiUrl) {
+    throw new Error("NEXT_PUBLIC_API_URL is not configured");
+  }
+
+  const res = await fetch(`${apiUrl}/packages`, {
     cache: "no-store",
   });
 

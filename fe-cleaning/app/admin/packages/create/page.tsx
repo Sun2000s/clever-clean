@@ -6,6 +6,55 @@ import { useRouter } from "next/navigation";
 export default function CreatePackagePage() {
   const router = useRouter();
 
+  const handleSubmit = async (data: any) => {
+    try {
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+
+      if (!apiUrl) {
+        throw new Error("NEXT_PUBLIC_API_URL is not configured");
+      }
+
+      const res = await fetch(`${apiUrl}/packages/create`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (!res.ok) {
+        throw new Error("Failed to create package");
+      }
+
+      const result = await res.json();
+
+      console.log("PACKAGE CREATED:", result);
+
+      router.push("/admin/packages");
+    } catch (error) {
+      console.error("CREATE PACKAGE ERROR:", error);
+    }
+  };
+
+  return (
+    <div>
+      <h1 className="mb-4 text-xl font-bold text-black">
+        Create Package
+      </h1>
+
+      <PackageForm onSubmit={handleSubmit} />
+    </div>
+  );
+}
+/*
+"use client";
+
+import PackageForm from "@/components/package/PackageForm";
+import { useRouter } from "next/navigation";
+
+export default function CreatePackagePage() {
+  const router = useRouter();
+
   const handleSubmit = async (
     data: any
   ) => {
@@ -59,7 +108,7 @@ export default function CreatePackagePage() {
 }
 
 
-/*
+
 "use client";
 
 import PackageForm from "@/components/package/PackageForm";
