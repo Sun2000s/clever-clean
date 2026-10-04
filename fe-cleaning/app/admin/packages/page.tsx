@@ -13,7 +13,7 @@ export default function AdminPackagesPage() {
 
   const fetchPackages = async () => {
     try {
-      const res = await fetch("http://localhost:8080/packages");
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/packages`);
 
       if (!res.ok) {
         throw new Error("Failed to fetch packages");
@@ -42,7 +42,7 @@ export default function AdminPackagesPage() {
 
     try {
       const res = await fetch(
-        `http://localhost:8080/packages/${id}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/packages/${id}`,
         {
           method: "DELETE",
         }
