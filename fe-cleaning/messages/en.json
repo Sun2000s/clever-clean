@@ -1,0 +1,59 @@
+
+{
+  "Navbar": {
+    "home": "Home",
+    "services": "Our Services",
+    "packages": "Packages",
+    "portfolio": "Portfolio",
+    "contact": "Contact",
+    "bookNow": "Book Now",
+    "language": "Change language"
+  },
+  "Home": {
+    "title": "Professional Cleaning Services",
+    "description": "Professional cleaning for homes, condominiums, offices and commercial spaces, with attention to every detail.",
+    "viewPackages": "View Packages",
+    "contactUs": "Contact Us"
+  },
+  "Contact": {
+    "title": "Contact Clever Clean",
+    "description": "Ask about our cleaning services and book an appointment through your preferred channel.",
+    "line": "Chat on LINE",
+    "facebook": "Visit Facebook",
+    "tiktok": "View TikTok",
+    "booking": "Book via LINE"
+  },
+
+"HeroContent": {
+  "badge": "Professional Cleaning Company",
+  "title1": "Premium Cleaning",
+  "title2": "Services",
+  "title3": "You Can Trust",
+  "description": "Professional residential, office, condominium and commercial cleaning services delivered with premium quality, experienced staff and attention to every detail.",
+  "bookNow": "Book Now",
+  "viewPackages": "View Packages",
+  "trusted": "Trusted by our customers",
+  "serviceTypes": "Residential • Office • Commercial"
+},
+"HeroImage": {
+  "happyClients": "Happy Clients",
+  "professionalStaff": "Professional Staff",
+  "staffDescription": "Fully trained and trusted team"
+},
+"HeroStats": {
+  "happyClients": "Happy Clients",
+  "experience": "Years Experience",
+  "support": "Customer Support"
+},
+"Trusted": {
+  "professionalTitle": "Professional Service",
+  "professionalDescription": "Quality and attention to detail at every step",
+  "qualityTitle": "Quality Cleaning",
+  "qualityDescription": "Committed to clean, tidy and well-maintained spaces",
+  "flexibleTitle": "Flexible Solutions",
+  "flexibleDescription": "Solutions for homes and businesses",
+  "bookingTitle": "Convenient Booking",
+  "bookingDescription": "Easy service enquiries and appointments"
+}
+
+}
