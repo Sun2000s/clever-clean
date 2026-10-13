@@ -1,3 +1,4 @@
+
 import Link from "next/link";
 
 const portfolioItems = [
@@ -8,8 +9,17 @@ const portfolioItems = [
     location: "Residential Property",
     description:
       "ผลงานการดูแลทำความสะอาดบ้านพักอาศัยแบบครบพื้นที่ โดยเน้นความสะอาด ความเป็นระเบียบ และรายละเอียดในทุกจุด",
-    image:
-      "https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=1600&q=80",
+    image: "/images/portfolio/residential/main.jpg",
+
+    beforeImage: "/images/portfolio/residential/before.jpg",
+    afterImage: "/images/portfolio/residential/after.jpg",
+
+    gallery: [
+      "/images/portfolio/residential/gallery-01.jpg",
+      "/images/portfolio/residential/gallery-02.jpg",
+      "/images/portfolio/residential/gallery-03.jpg",
+    ],
+
     services: [
       "ทำความสะอาดพื้นที่ทั่วไป",
       "ทำความสะอาดห้องน้ำ",
@@ -18,6 +28,7 @@ const portfolioItems = [
       "เก็บรายละเอียดพื้นที่โดยรวม",
     ],
   },
+
   {
     id: 2,
     title: "Office & Commercial Cleaning",
@@ -25,8 +36,17 @@ const portfolioItems = [
     location: "Commercial Office",
     description:
       "ดูแลความสะอาดพื้นที่สำนักงานเพื่อสร้างสภาพแวดล้อมที่สะอาด เป็นระเบียบ และเหมาะสำหรับการทำงาน",
-    image:
-      "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1600&q=80",
+    image: "/images/portfolio/office/main.jpg",
+
+    beforeImage: "/images/portfolio/office/before.jpg",
+    afterImage: "/images/portfolio/office/after.jpg",
+
+    gallery: [
+      "/images/portfolio/office/gallery-01.jpg",
+      "/images/portfolio/office/gallery-02.jpg",
+      "/images/portfolio/office/gallery-03.jpg",
+    ],
+
     services: [
       "ทำความสะอาดสำนักงาน",
       "ทำความสะอาดพื้นที่ส่วนกลาง",
@@ -35,6 +55,7 @@ const portfolioItems = [
       "ทำความสะอาดพื้นและกระจก",
     ],
   },
+
   {
     id: 3,
     title: "Deep Cleaning",
@@ -42,8 +63,17 @@ const portfolioItems = [
     location: "Residential Property",
     description:
       "งานทำความสะอาดเชิงลึกสำหรับพื้นที่ที่ต้องการการดูแลเป็นพิเศษ โดยเน้นการเก็บรายละเอียดในจุดที่ทำความสะอาดทั่วไปอาจเข้าไม่ถึง",
-    image:
-      "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=1600&q=80",
+    image: "/images/portfolio/deep-cleaning/main.jpg",
+
+    beforeImage: "/images/portfolio/deep-cleaning/before.jpg",
+    afterImage: "/images/portfolio/deep-cleaning/after.jpg",
+
+    gallery: [
+      "/images/portfolio/deep-cleaning/gallery-01.jpg",
+      "/images/portfolio/deep-cleaning/gallery-02.jpg",
+      "/images/portfolio/deep-cleaning/gallery-03.jpg",
+    ],
+
     services: [
       "ทำความสะอาดเชิงลึก",
       "ทำความสะอาดซอกมุม",
@@ -52,6 +82,7 @@ const portfolioItems = [
       "เก็บรายละเอียดหลังทำความสะอาด",
     ],
   },
+
   {
     id: 4,
     title: "Outdoor Maintenance",
@@ -59,8 +90,17 @@ const portfolioItems = [
     location: "Outdoor Area",
     description:
       "ดูแลพื้นที่ภายนอกให้สะอาด เป็นระเบียบ และพร้อมใช้งาน ทั้งพื้นที่ทางเดิน พื้นที่รอบอาคาร และพื้นที่ใช้งานภายนอก",
-    image:
-      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1600&q=80",
+    image: "/images/portfolio/outdoor/main.jpg",
+
+    beforeImage: "/images/portfolio/outdoor/before.jpg",
+    afterImage: "/images/portfolio/outdoor/after.jpg",
+
+    gallery: [
+      "/images/portfolio/outdoor/gallery-01.jpg",
+      "/images/portfolio/outdoor/gallery-02.jpg",
+      "/images/portfolio/outdoor/gallery-03.jpg",
+    ],
+
     services: [
       "ทำความสะอาดพื้นที่ภายนอก",
       "ดูแลทางเดิน",
@@ -129,7 +169,7 @@ export default async function PortfolioDetailPage({
       {/* Hero */}
       <section className="mx-auto max-w-7xl px-6 py-12 lg:px-8 lg:py-20">
         <div className="grid gap-12 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
-          {/* Image */}
+          {/* Main Image */}
           <div className="overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-black/5">
             <img
               src={portfolio.image}
@@ -138,7 +178,7 @@ export default async function PortfolioDetailPage({
             />
           </div>
 
-          {/* Content */}
+          {/* Project Information */}
           <div>
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#D9B06D]">
               {portfolio.category}
@@ -201,7 +241,7 @@ export default async function PortfolioDetailPage({
         </div>
       </section>
 
-      {/* Before / After Placeholder */}
+      {/* Before / After */}
       <section className="mx-auto max-w-7xl px-6 py-20 lg:px-8 lg:py-28">
         <div className="text-center">
           <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#D9B06D]">
@@ -213,37 +253,107 @@ export default async function PortfolioDetailPage({
           </h2>
 
           <p className="mx-auto mt-5 max-w-2xl text-sm leading-7 text-gray-500">
-            ส่วนนี้เราจะนำรูป Before & After จริงของผลงานมาแสดงในขั้นตอนถัดไป
+            เปรียบเทียบสภาพพื้นที่ก่อนและหลังการทำความสะอาด
+            เพื่อให้เห็นถึงรายละเอียดและคุณภาพของงานที่เราดูแล
           </p>
         </div>
 
         <div className="mt-12 grid gap-8 md:grid-cols-2">
+          {/* Before */}
           <div className="overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-black/5">
-            <div className="flex aspect-[16/10] items-center justify-center bg-gray-100">
-              <span className="text-sm font-medium text-gray-400">
-                Before Image
-              </span>
+            <div className="relative aspect-[16/10] overflow-hidden">
+              <img
+                src={portfolio.beforeImage}
+                alt={`${portfolio.title} Before`}
+                className="h-full w-full object-cover transition duration-500 hover:scale-105"
+              />
+
+              <div className="absolute left-5 top-5">
+                <span className="rounded-full bg-black/70 px-4 py-2 text-xs font-semibold uppercase tracking-wider text-white backdrop-blur-sm">
+                  Before
+                </span>
+              </div>
             </div>
 
             <div className="p-5">
               <p className="text-sm font-semibold text-[#183153]">
-                Before
+                ก่อนทำความสะอาด
+              </p>
+
+              <p className="mt-2 text-sm leading-6 text-gray-500">
+                สภาพพื้นที่ก่อนเข้าดำเนินการ
               </p>
             </div>
           </div>
 
+          {/* After */}
           <div className="overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-black/5">
-            <div className="flex aspect-[16/10] items-center justify-center bg-gray-100">
-              <span className="text-sm font-medium text-gray-400">
-                After Image
-              </span>
+            <div className="relative aspect-[16/10] overflow-hidden">
+              <img
+                src={portfolio.afterImage}
+                alt={`${portfolio.title} After`}
+                className="h-full w-full object-cover transition duration-500 hover:scale-105"
+              />
+
+              <div className="absolute left-5 top-5">
+                <span className="rounded-full bg-[#D9B06D] px-4 py-2 text-xs font-semibold uppercase tracking-wider text-[#183153]">
+                  After
+                </span>
+              </div>
             </div>
 
             <div className="p-5">
               <p className="text-sm font-semibold text-[#183153]">
-                After
+                หลังทำความสะอาด
+              </p>
+
+              <p className="mt-2 text-sm leading-6 text-gray-500">
+                ผลลัพธ์หลังจากดำเนินการทำความสะอาด
               </p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Gallery */}
+      <section className="border-t border-black/5 bg-white">
+        <div className="mx-auto max-w-7xl px-6 py-20 lg:px-8 lg:py-28">
+          <div className="max-w-2xl">
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#D9B06D]">
+              Project Gallery
+            </p>
+
+            <h2 className="mt-3 font-serif text-3xl text-[#183153] md:text-4xl">
+              ภาพผลงานเพิ่มเติม
+            </h2>
+
+            <p className="mt-5 text-sm leading-7 text-gray-500">
+              รายละเอียดของผลงานและพื้นที่ต่าง ๆ ที่ทีม Clever Clean
+              ได้เข้าไปดูแล
+            </p>
+          </div>
+
+          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {portfolio.gallery.map((image, index) => (
+              <div
+                key={image}
+                className="group overflow-hidden rounded-2xl bg-[#F9F9F7] shadow-sm ring-1 ring-black/5"
+              >
+                <div className="relative aspect-[4/3] overflow-hidden">
+                  <img
+                    src={image}
+                    alt={`${portfolio.title} Gallery ${index + 1}`}
+                    className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                  />
+                </div>
+
+                <div className="p-4">
+                  <p className="text-xs font-semibold uppercase tracking-[0.15em] text-gray-400">
+                    Gallery {String(index + 1).padStart(2, "0")}
+                  </p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>

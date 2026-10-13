@@ -1,19 +1,26 @@
+
 import { NextResponse } from "next/server";
 
 export async function GET() {
   try {
-    const res = await fetch("http://localhost:8080/packages", {
-      cache: "no-store",
-    });
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+
+    if (!apiUrl) {
+      return NextResponse.json(
+        { message: "NEXT_PUBLIC_API_URL is not configured" },
+        { status: 500 }
+      );
+    }
+
+    const res = await fetch(
+      `${apiUrl.replace(/\/+$/, "")}/packages`,
+      { cache: "no-store" }
+    );
 
     if (!res.ok) {
       return NextResponse.json(
-        {
-          message: "Failed to fetch packages",
-        },
-        {
-          status: res.status,
-        }
+        { message: "Failed to fetch packages" },
+        { status: res.status }
       );
     }
 
@@ -24,12 +31,8 @@ export async function GET() {
     console.error("PACKAGES PROXY ERROR:", error);
 
     return NextResponse.json(
-      {
-        message: "Cannot connect to backend",
-      },
-      {
-        status: 500,
-      }
+      { message: "Cannot connect to backend" },
+      { status: 500 }
     );
   }
 }
