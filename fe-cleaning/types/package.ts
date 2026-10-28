@@ -1,4 +1,10 @@
-// 👉 type จาก API (ดิบ)
+
+export interface HighlightItem {
+  header: string;
+  bullets: string[];
+}
+
+// ข้อมูลดิบจาก API
 export interface PackageApi {
   id: number;
   name: string;
@@ -8,21 +14,16 @@ export interface PackageApi {
   maxStaff: number;
   price: number;
   description?: string;
-
   coverImageUrl?: string;
-
   currency?: string | null;
   rating?: number;
+  highlights?: HighlightItem[];
+  benefits?: string[];
 }
 
 export interface ImageType {
   url: string;
   publicId: string;
-}
-
-export interface HighlightItem {
-  header: string;
-  bullets: string[];
 }
 
 export interface PackageType {

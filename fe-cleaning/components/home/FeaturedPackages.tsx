@@ -1,7 +1,7 @@
-
-import Link from "next/link";
+import Link from "@/i18n/navigation";
+import { getTranslations } from "next-intl/server";
 import PackageList from "@/components/package/PackageList";
-import { PackageApi, PackageType } from "@/types/package";
+import type { PackageApi, PackageType } from "@/types/package";
 
 async function getFeaturedPackages(): Promise<PackageApi[]> {
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
@@ -31,6 +31,7 @@ async function getFeaturedPackages(): Promise<PackageApi[]> {
 }
 
 export default async function FeaturedPackage() {
+  const t = await getTranslations("FeaturedPackage");
   const packages = await getFeaturedPackages();
 
   const mapped: PackageType[] = packages.map((item) => ({
@@ -54,25 +55,23 @@ export default async function FeaturedPackage() {
   }));
 
   return (
-    <section className="bg-[#F9F9F7] py-24 md:py-32">
-      <div className="mx-auto max-w-7xl px-6">
+    <section className="bg-[#F9F9F7] py-20 md:py-32">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6">
         {/* Section Header */}
         <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-          <div>
-            <p className="text-sm font-semibold uppercase tracking-[5px] text-[#D9B06D]">
-              OUR PACKAGES
+          <div className="max-w-3xl">
+            <p className="text-xs font-semibold uppercase tracking-[3px] text-[#D9B06D] sm:text-sm sm:tracking-[5px]">
+              {t("eyebrow")}
             </p>
 
-            <h2 className="mt-4 font-heading text-4xl font-bold leading-tight text-[#183153] md:text-5xl">
-              Find Your Perfect
+            <h2 className="mt-4 font-heading text-3xl font-bold leading-tight text-[#183153] sm:text-4xl md:text-5xl">
+              {t("titleLine1")}
               <br className="hidden md:block" />
-              Cleaning Package
+              <span className="md:inline"> {t("titleLine2")}</span>
             </h2>
 
-            <p className="mt-5 max-w-2xl text-base leading-8 text-gray-600">
-              เลือกแพ็กเกจทำความสะอาดที่เหมาะกับบ้าน สำนักงาน
-              และพื้นที่ของคุณ พร้อมสอบถามรายละเอียดเพิ่มเติมกับทีมงาน
-              Clever Clean
+            <p className="mt-5 max-w-2xl text-base leading-7 text-gray-600 sm:leading-8">
+              {t("description")}
             </p>
           </div>
 
@@ -80,31 +79,30 @@ export default async function FeaturedPackage() {
             href="/packages"
             className="inline-flex w-fit shrink-0 items-center gap-3 rounded-full border border-[#183153]/20 px-6 py-3 font-semibold text-[#183153] transition-all duration-300 hover:border-[#183153] hover:bg-[#183153] hover:text-white"
           >
-            View All Packages
+            {t("viewAll")}
             <span aria-hidden="true">→</span>
           </Link>
         </div>
 
         {/* Featured Packages */}
-        <div className="mt-12 md:mt-16">
+        <div className="mt-10 md:mt-16">
           {mapped.length > 0 ? (
             <PackageList packages={mapped} />
           ) : (
             <div className="rounded-3xl border border-gray-200 bg-white px-6 py-14 text-center">
               <h3 className="text-xl font-semibold text-[#183153]">
-                Packages Are Temporarily Unavailable
+                {t("unavailableTitle")}
               </h3>
 
-              <p className="mt-3 text-sm leading-7 text-gray-500">
-                ขออภัย ขณะนี้ไม่สามารถโหลดข้อมูลแพ็กเกจได้
-                กรุณาเข้าชมอีกครั้งหรือติดต่อทีมงานเพื่อสอบถามรายละเอียด
+              <p className="mx-auto mt-3 max-w-xl text-sm leading-7 text-gray-500">
+                {t("unavailableDescription")}
               </p>
 
               <Link
                 href="/packages"
                 className="mt-6 inline-flex rounded-full bg-[#183153] px-7 py-3 font-semibold text-white transition hover:bg-[#24466D]"
               >
-                Explore Packages
+                {t("explore")}
               </Link>
             </div>
           )}
@@ -112,12 +110,12 @@ export default async function FeaturedPackage() {
 
         {/* Bottom Note */}
         <p className="mt-8 text-center text-sm leading-7 text-gray-500">
-          ต้องการบริการที่เหมาะกับพื้นที่ของคุณโดยเฉพาะ?
+          {t("bottomNote")}
           <Link
             href="/contact"
             className="ml-1 font-semibold text-[#183153] underline decoration-[#D9B06D] underline-offset-4 hover:text-[#B88B45]"
           >
-            ติดต่อเราได้เลย
+            {t("contactUs")}
           </Link>
         </p>
       </div>

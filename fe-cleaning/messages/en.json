@@ -15,6 +15,21 @@
     "viewPackages": "View Packages",
     "contactUs": "Contact Us"
   },
+
+  "Packages": {
+    "eyebrow": "OUR PACKAGES",
+    "heroTitle": "Cleaning Packages Designed",
+    "heroTitleLine2": "for Your Space",
+    "heroDescription": "Choose the right cleaning package for your home, office, or commercial space. Our professional team pays attention to every detail.",
+    "choosePlan": "CHOOSE YOUR PLAN",
+    "sectionTitle": "Our Cleaning Packages",
+    "sectionDescription": "Contact us for more details and find the cleaning service that best suits your needs.",
+    "ctaEyebrow": "NEED SOMETHING MORE?",
+    "ctaTitle": "Need a Customized Cleaning Plan?",
+    "ctaDescription": "If your space or requirements do not fit our existing packages, contact Clever Clean to create a cleaning plan tailored to your needs.",
+    "contactUs": "Contact Us"
+  },
+  
   "Contact": {
     "title": "Contact Clever Clean",
     "description": "Ask about our cleaning services and book an appointment through your preferred channel.",
@@ -54,6 +69,108 @@
   "flexibleDescription": "Solutions for homes and businesses",
   "bookingTitle": "Convenient Booking",
   "bookingDescription": "Easy service enquiries and appointments"
-}
+},
+"Services": {
+  "eyebrow": "OUR SERVICES",
+  "title": "Complete Cleaning Solutions",
+  "description": "From residential homes to commercial buildings, Clever Clean provides complete cleaning and maintenance solutions — all in one place.",
+  "residential": {
+    "title": "Residential Cleaning",
+    "description": "Professional cleaning solutions designed to keep your home fresh, hygienic and comfortable every day.",
+    "services": {
+      "house": "House Cleaning",
+      "condo": "Condominium Cleaning",
+      "move": "Move-in / Move-out Cleaning"
+    }
+  },
+  "office": {
+    "title": "Office & Commercial",
+    "description": "Reliable cleaning services for offices, commercial buildings and contract cleaning projects.",
+    "services": {
+      "office": "Office Cleaning",
+      "commercial": "Commercial Cleaning",
+      "contract": "Contract Cleaning"
+    }
+  },
+  "deep": {
+    "title": "Deep Cleaning",
+    "description": "Specialized cleaning services using professional equipment for cleaner and healthier living spaces.",
+    "services": {
+      "carpet": "Carpet Cleaning",
+      "sofa": "Sofa Cleaning",
+      "dustMite": "Dust Mite Removal",
+      "ozone": "Ozone Treatment"
+    }
+  },
+  "outdoor": {
+    "title": "Outdoor Maintenance",
+    "description": "Professional outdoor cleaning and landscape maintenance services for homes and businesses.",
+    "services": {
+      "grass": "Grass Cutting",
+      "garden": "Garden Maintenance"
+    }
+  }
+},
+
+"WhyChooseUs": {
+  "eyebrow": "WHY CLEVER CLEAN",
+  "titleLine1": "A Cleaner Space.",
+  "titleLine2": "A Better Everyday.",
+  "description": "Every space has different needs. Clever Clean focuses on providing suitable cleaning solutions while prioritizing quality and customer experience, from your first enquiry to service delivery.",
+  "button": "Explore Our Services",
+  "reasons": {
+    "space": {
+      "title": "Solutions for Every Space",
+      "description": "We serve a variety of spaces, including houses, condominiums, offices, and commercial buildings."
+    },
+    "detail": {
+      "title": "Attention to Detail",
+      "description": "We focus on cleanliness and presentation to help keep every space clean, tidy, and ready to use."
+    },
+    "service": {
+      "title": "Service That Fits You",
+      "description": "Choose cleaning services that suit your space and individual requirements."
+    }
+  }
+},
+
+"FeaturedPackage": {
+  "eyebrow": "OUR PACKAGES",
+  "titleLine1": "Find Your Perfect",
+  "titleLine2": "Cleaning Package",
+  "description": "Explore cleaning packages for your home, office, or commercial space. Contact the Clever Clean team for more information and assistance in choosing the right service.",
+  "viewAll": "View All Packages",
+  "unavailableTitle": "Packages Are Temporarily Unavailable",
+  "unavailableDescription": "Sorry, we couldn't load the package information at this time. Please try again later or contact our team for assistance.",
+  "explore": "Explore Packages",
+  "bottomNote": "Looking for a cleaning solution tailored to your space?",
+  "contactUs": "Contact Us"
+},
+
+"PackageDetail": {
+    "loading": "Loading package...",
+    "notFoundLabel": "PACKAGE NOT FOUND",
+    "notFoundTitle": "We Couldn't Find This Package",
+    "notFoundDescription": "Please return to the packages page and select another package.",
+    "backToPackages": "Back to Packages",
+    "backLink": "Back to Packages",
+    "packageLabel": "Cleaning Package",
+    "noImage": "No Image Available",
+    "startingFrom": "Starting from",
+    "duration": "Duration",
+    "hours": "hours",
+    "staff": "Cleaning Staff",
+    "people": "people",
+    "inquire": "Inquire About This Package",
+    "aboutLabel": "About This Package",
+    "descriptionTitle": "Package Details",
+    "defaultDescription": "A cleaning package designed to keep your space clean, organized, and ready to use.",
+    "highlightsTitle": "Package Highlights",
+    "benefitsTitle": "Your Benefits",
+    "ctaLabel": "Get Started",
+    "ctaTitle": "Ready to Make Your Space Cleaner?",
+    "ctaDescription": "Contact the Clever Clean team to learn more and find the right service for your space.",
+    "contactUs": "Contact Us"
+  }
 
 }
