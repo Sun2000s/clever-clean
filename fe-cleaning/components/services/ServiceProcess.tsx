@@ -1,4 +1,5 @@
 import Container from "@/components/ui/Container";
+import { useTranslations } from "next-intl";
 import ProcessCard from "./ProcessCard";
 
 interface ProcessItem {
@@ -18,31 +19,27 @@ export default function ServiceProcess({
   subtitle,
   items,
 }: ServiceProcessProps) {
+  const t = useTranslations("ServiceCommon");
+
   return (
     <section className="bg-white py-24">
-
       <Container>
-
         <div className="mx-auto max-w-3xl text-center">
-
           <p className="font-semibold uppercase tracking-[6px] text-accent">
-            Our Process
+            {t("ourProcess")}
           </p>
 
-          <h2 className="mt-5 font-heading text-5xl text-primary">
+          <h2 className="mt-5 font-heading text-4xl text-primary md:text-5xl">
             {title}
           </h2>
 
           <p className="mt-8 leading-8 text-gray-600">
             {subtitle}
           </p>
-
         </div>
 
         <div className="relative mt-20">
-
           {/* Desktop Line */}
-
           <div
             className="
               absolute
@@ -57,7 +54,6 @@ export default function ServiceProcess({
           />
 
           <div className="grid gap-12 lg:grid-cols-5">
-
             {items.map((item) => (
               <ProcessCard
                 key={item.step}
@@ -66,13 +62,9 @@ export default function ServiceProcess({
                 description={item.description}
               />
             ))}
-
           </div>
-
         </div>
-
       </Container>
-
     </section>
   );
 }

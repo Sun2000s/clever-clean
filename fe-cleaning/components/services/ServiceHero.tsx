@@ -1,4 +1,6 @@
 import Image from "next/image";
+import { Link } from "@/i18n/navigation";
+import { useTranslations } from "next-intl";
 
 interface ServiceHeroProps {
   title: string;
@@ -11,6 +13,8 @@ export default function ServiceHero({
   subtitle,
   image,
 }: ServiceHeroProps) {
+  const t = useTranslations("ServiceCommon");
+
   return (
     <section className="relative h-[70vh] min-h-[600px] overflow-hidden">
       {/* Background Image */}
@@ -27,10 +31,10 @@ export default function ServiceHero({
 
       {/* Content */}
       <div className="relative z-10 flex h-full items-center">
-        <div className="mx-auto max-w-7xl px-6">
+        <div className="mx-auto w-full max-w-7xl px-6">
           <div className="max-w-3xl">
             <p className="mb-4 uppercase tracking-[6px] text-accent">
-              Clever Clean
+              {t("brand")}
             </p>
 
             <h1 className="font-heading text-5xl font-bold leading-tight text-white lg:text-7xl">
@@ -42,13 +46,19 @@ export default function ServiceHero({
             </p>
 
             <div className="mt-12 flex flex-wrap gap-5">
-              <button className="rounded-full bg-accent px-8 py-4 font-semibold text-primary transition hover:scale-105">
-                Get Free Quote
-              </button>
+              <Link
+                href="/contact"
+                className="rounded-full bg-accent px-8 py-4 font-semibold text-primary transition hover:scale-105"
+              >
+                {t("getQuote")}
+              </Link>
 
-              <button className="rounded-full border border-white px-8 py-4 text-white transition hover:bg-white hover:text-primary">
-                Contact Us
-              </button>
+              <Link
+                href="/contact"
+                className="rounded-full border border-white px-8 py-4 text-white transition hover:bg-white hover:text-primary"
+              >
+                {t("contactUs")}
+              </Link>
             </div>
           </div>
         </div>

@@ -1,7 +1,9 @@
+
 import Image from "next/image";
 import { ReactNode } from "react";
 import { HiArrowRight } from "react-icons/hi2";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
+import { useTranslations } from "next-intl";
 
 interface ServiceCategoryCardProps {
   image: string;
@@ -19,12 +21,12 @@ export default function ServiceCategoryCard({
   description,
   services,
   href,
-}: ServiceCategoryCardProps){
+}: ServiceCategoryCardProps) {
+  const t = useTranslations("Services");
+
   return (
     <div className="group overflow-hidden rounded-3xl bg-white shadow-lg transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl">
-
       {/* Image */}
-
       <div className="relative h-64 overflow-hidden">
         <Image
           src={image}
@@ -37,9 +39,7 @@ export default function ServiceCategoryCard({
       </div>
 
       {/* Content */}
-
       <div className="p-8">
-
         <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10 text-2xl text-primary transition group-hover:bg-primary group-hover:text-white">
           {icon}
         </div>
@@ -59,31 +59,19 @@ export default function ServiceCategoryCard({
               className="flex items-center gap-3"
             >
               <div className="h-2 w-2 rounded-full bg-accent" />
-
               <span>{service}</span>
             </div>
           ))}
         </div>
 
         <Link
-            href={href}
-            className="
-                mt-8
-                inline-flex
-                items-center
-                gap-2
-                font-semibold
-                text-primary
-                transition-all
-                group-hover:gap-4
-            "
-            >
-            Learn More
-            <HiArrowRight />
-            </Link>
-
+          href={href}
+          className="mt-8 inline-flex items-center gap-2 font-semibold text-primary transition-all group-hover:gap-4"
+        >
+          {t("learnMore")}
+          <HiArrowRight />
+        </Link>
       </div>
-
     </div>
   );
 }

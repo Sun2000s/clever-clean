@@ -1,25 +1,25 @@
-
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
+import { useTranslations } from "next-intl";
 
 const LINE_URL = "https://line.me/R/ti/p/@crclean";
 
 export default function ContactCTA() {
+  const t = useTranslations("ContactCTA");
+
   return (
     <section className="bg-white px-6 py-20 md:py-28">
       <div className="mx-auto flex max-w-7xl flex-col justify-between gap-8 rounded-3xl bg-[#F9F9F7] p-8 md:flex-row md:items-center md:p-12 lg:p-16">
         <div className="max-w-2xl">
           <p className="text-sm font-semibold uppercase tracking-[0.25em] text-[#B88D4B]">
-            LET&apos;S TALK
+            {t("eyebrow")}
           </p>
 
           <h2 className="mt-4 font-serif text-3xl font-bold leading-tight text-[#183153] md:text-5xl">
-            Ready for a Cleaner Space?
+            {t("title")}
           </h2>
 
           <p className="mt-5 text-base leading-8 text-gray-600">
-            ติดต่อ Clever Clean เพื่อสอบถามบริการ
-            ดูรายละเอียดแพ็กเกจ และนัดหมายทำความสะอาด
-            ผ่านช่องทางที่คุณสะดวก
+            {t("description")}
           </p>
         </div>
 
@@ -30,14 +30,15 @@ export default function ContactCTA() {
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center rounded-full bg-[#183153] px-8 py-4 font-semibold text-white transition hover:-translate-y-1 hover:bg-[#24466D]"
           >
-            Booking ผ่าน LINE <span className="ml-3">↗</span>
+            {t("booking")}
+            <span className="ml-3" aria-hidden="true">↗</span>
           </a>
 
           <Link
             href="/contact"
             className="inline-flex items-center justify-center rounded-full border border-[#183153]/20 px-8 py-4 font-semibold text-[#183153] transition hover:border-[#D9B06D] hover:bg-white"
           >
-            ช่องทางติดต่อทั้งหมด
+            {t("contact")}
           </Link>
         </div>
       </div>

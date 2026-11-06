@@ -1,5 +1,6 @@
 import Container from "@/components/ui/Container";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
+import { useTranslations } from "next-intl";
 import { HiArrowRight } from "react-icons/hi2";
 
 interface ServiceCTAProps {
@@ -21,20 +22,18 @@ export default function ServiceCTA({
   primaryButton,
   secondaryButton,
 }: ServiceCTAProps) {
+  const t = useTranslations("ServiceCommon");
+
   return (
     <section className="relative overflow-hidden bg-primary py-28">
-
       {/* Background Decoration */}
-
-      <div className="absolute -top-40 -left-40 h-96 w-96 rounded-full bg-white/5 blur-3xl" />
+      <div className="absolute -left-40 -top-40 h-96 w-96 rounded-full bg-white/5 blur-3xl" />
 
       <div className="absolute -bottom-40 -right-40 h-96 w-96 rounded-full bg-accent/20 blur-3xl" />
 
       <Container>
-
-        <div className="mx-auto max-w-4xl text-center">
-
-          <h2 className="font-heading text-5xl text-white">
+        <div className="relative mx-auto max-w-4xl text-center">
+          <h2 className="font-heading text-4xl text-white md:text-5xl">
             {title}
           </h2>
 
@@ -43,7 +42,6 @@ export default function ServiceCTA({
           </p>
 
           <div className="mt-12 flex flex-col justify-center gap-5 sm:flex-row">
-
             <Link
               href={primaryButton.href}
               className="
@@ -56,13 +54,12 @@ export default function ServiceCTA({
                 px-8
                 py-4
                 font-semibold
-                text-white
+                text-primary
                 transition-all
                 hover:scale-105
               "
             >
-              {primaryButton.text}
-
+              {t("getFreeQuote")}
               <HiArrowRight />
             </Link>
 
@@ -81,15 +78,11 @@ export default function ServiceCTA({
                 hover:text-primary
               "
             >
-              {secondaryButton.text}
+              {t("viewAllServices")}
             </Link>
-
           </div>
-
         </div>
-
       </Container>
-
     </section>
   );
 }

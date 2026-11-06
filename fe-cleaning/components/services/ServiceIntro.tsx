@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { HiCheckCircle } from "react-icons/hi2";
+import { useTranslations } from "next-intl";
 
 interface ServiceIntroProps {
   title: string;
@@ -14,12 +15,12 @@ export default function ServiceIntro({
   image,
   highlights,
 }: ServiceIntroProps) {
+  const t = useTranslations("ServiceCommon");
+
   return (
     <section className="bg-white py-24">
       <div className="mx-auto grid max-w-7xl items-center gap-16 px-6 lg:grid-cols-2">
-
         {/* Image */}
-
         <div className="relative overflow-hidden rounded-3xl shadow-xl">
           <Image
             src={image}
@@ -31,14 +32,12 @@ export default function ServiceIntro({
         </div>
 
         {/* Content */}
-
         <div>
-
           <p className="font-semibold uppercase tracking-[6px] text-accent">
-            About This Service
+            {t("about")}
           </p>
 
-          <h2 className="mt-5 font-heading text-5xl text-primary">
+          <h2 className="mt-5 font-heading text-4xl text-primary md:text-5xl">
             {title}
           </h2>
 
@@ -47,24 +46,20 @@ export default function ServiceIntro({
           </p>
 
           <div className="mt-10 space-y-5">
-
-            {highlights.map((item) => (
+            {highlights.map((item, index) => (
               <div
-                key={item}
+                key={`${item}-${index}`}
                 className="flex items-center gap-4"
               >
-                <HiCheckCircle className="text-2xl text-success" />
+                <HiCheckCircle className="shrink-0 text-2xl text-success" />
 
                 <span className="text-lg">
                   {item}
                 </span>
               </div>
             ))}
-
           </div>
-
         </div>
-
       </div>
     </section>
   );

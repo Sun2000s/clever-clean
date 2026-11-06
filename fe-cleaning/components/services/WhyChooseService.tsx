@@ -1,12 +1,6 @@
 import Container from "@/components/ui/Container";
+import { useTranslations } from "next-intl";
 import WhyChooseCard from "./WhyChooseCard";
-
-import {
-  HiShieldCheck,
-  HiSparkles,
-  HiUsers,
-  HiClock,
-} from "react-icons/hi2";
 
 interface Item {
   icon: React.ReactNode;
@@ -20,74 +14,41 @@ interface WhyChooseServiceProps {
   items: Item[];
 }
 
-const defaultItems = [
-  {
-    icon: <HiUsers />,
-    title: "Professional Team",
-    description:
-      "Highly trained cleaning professionals delivering consistent and reliable service.",
-  },
-  {
-    icon: <HiSparkles />,
-    title: "Premium Equipment",
-    description:
-      "Professional-grade tools and modern cleaning techniques for outstanding results.",
-  },
-  {
-    icon: <HiShieldCheck />,
-    title: "Safe Products",
-    description:
-      "Eco-friendly cleaning products that are safe for children, pets and the environment.",
-  },
-  {
-    icon: <HiClock />,
-    title: "Reliable Schedule",
-    description:
-      "Flexible appointments with punctual arrival and dependable service every time.",
-  },
-];
-
 export default function WhyChooseService({
   title,
   subtitle,
-  items = defaultItems,
+  items,
 }: WhyChooseServiceProps) {
+  const t = useTranslations("ServiceCommon");
+
   return (
     <section className="bg-secondary py-24">
-
       <Container>
-
         <div className="mx-auto max-w-3xl text-center">
-
           <p className="font-semibold uppercase tracking-[6px] text-accent">
-            Why Choose Us
+            {t("whyChooseUs")}
           </p>
 
-          <h2 className="mt-5 font-heading text-5xl text-primary">
+          <h2 className="mt-5 font-heading text-4xl text-primary md:text-5xl">
             {title}
           </h2>
 
           <p className="mt-8 leading-8 text-gray-600">
             {subtitle}
           </p>
-
         </div>
 
         <div className="mt-20 grid gap-8 md:grid-cols-2">
-
-          {items.map((item) => (
+          {items.map((item, index) => (
             <WhyChooseCard
-              key={item.title}
+              key={`${item.title}-${index}`}
               icon={item.icon}
               title={item.title}
               description={item.description}
             />
           ))}
-
         </div>
-
       </Container>
-
     </section>
   );
 }
